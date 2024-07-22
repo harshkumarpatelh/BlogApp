@@ -1,5 +1,8 @@
 const express = require("express");
 const USER = require("../models/user");
+
+
+
 const router = express.Router();
 
 router.get("/signin",(req, res)=>{
@@ -20,6 +23,21 @@ router.post("/signup",async (req, res)=>{
     });
 
     return res.redirect("/");
+});
+
+router.post("/signin",async (req, res)=>{
+    const { email, password} = req.body;
+
+    try{
+        const token = await USER.matchPasswordAndGenerateToken(email,password);
+        return res.cookie("token",token).redirect("/");
+    }
+    catch(err){
+        return res.render("signin",{
+                error:"Invalid Email or Password"
+        });
+    }
+    
 });
 
 module.exports = router;

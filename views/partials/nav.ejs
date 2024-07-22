@@ -26,3 +26,14 @@
       </div>
     </div>
   </nav>
+
+
+
+<% if (locals.error) { %>
+  <div class="container" style="margin-top: 10px;">
+
+    <div class="alert alert-danger" role="alert">
+      <%= locals.error %>
+    </div>
+  </div>
+<% } %>
