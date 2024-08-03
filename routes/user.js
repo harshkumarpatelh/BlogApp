@@ -14,12 +14,11 @@ router.get("/signup",(req, res)=>{
 });
 
 router.post("/signup",async (req, res)=>{
-    const {fullName , email, password} = req.body;
-
+    const {fullname , email, password} = req.body;
     await USER.create({
-        fullName,
-        email,
-        password
+        fullName:fullname,
+        email:email,
+        password:password
     });
 
     return res.redirect("/");
