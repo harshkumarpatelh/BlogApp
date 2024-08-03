@@ -36,4 +36,11 @@ router.post("/",upload.single("coverImage"), async (req , res)=>{
     return res.redirect(`/blog/${blog._id}`);
 });
 
+router.get("/:id", async (req , res)=>{
+    const blog = await Blog.findById(req.params.id);
+    return res.render("blog",{
+        user:req.user,
+        blog,
+    })
+});
 module.exports = router;
