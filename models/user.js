@@ -23,7 +23,7 @@ const userSchema = mongoose.Schema({
     },
     profileImage:{
         type:String,
-        default:"D:/Code/Development/Nodejs/BlogApp/public/image/images.png"
+        default:"/image/images.png"
     },
     role:{
         type:String,

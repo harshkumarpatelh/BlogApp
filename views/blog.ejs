@@ -15,7 +15,28 @@
     </div>
 
     <div class="container mt-4">
-        <img src="<%= blog.createdBy.profileImage %>" width="100px" alt="not found"/><%= blog.createdBy.fullName %>
+        <img src="<%= blog.createdBy.profileImage %>" width="50px" alt="not found"/>
+        <%= blog.createdBy.fullName %>
+    </div>
+
+    <div class="container" style="margin-top: 15px;">
+        <h1>Comments (<%= comment.length %>)</h1>
+        <% if (locals.user) { %>
+            <form action="/blog/comment/<%= blog._id %>" method="POST">
+                <div class="mb-3">
+                    <input type="text" class="form-control" id="content" name ="content" placeholder="Enter Your Comment">
+                </div>
+                <button type="submit" class="btn btn-primary">ADD</button>
+            </form>
+        <% } %>
+
+        <div class="container mt-3">
+            <% comment.forEach(post => { %>
+                <img src="<%= post.createdBy.profileImage %>" width="50px" alt="not found"/>
+                <%= post.createdBy.fullName %>
+                <p class="para mt-3"> <%= post.content %> </p>
+            <% }) %>
+        </div>
     </div>
     <%- include("./partials/script") %>
 </body>
